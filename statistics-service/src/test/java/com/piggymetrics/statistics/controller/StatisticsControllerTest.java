@@ -56,6 +56,7 @@ public class StatisticsControllerTest {
 		this.mockMvc = MockMvcBuilders.standaloneSetup(statisticsController).build();
 	}
 
+	// Tag: TC-01 [EP/DT] - API Tier: StatisticsController.getStatisticsByAccountName()
 	@Test
 	public void shouldGetStatisticsByAccountName() throws Exception {
 
@@ -117,5 +118,20 @@ public class StatisticsControllerTest {
 				.andExpect(status().isOk());
 
 		verify(statisticsService, times(1)).save(anyString(), any(Account.class));
+	}
+
+	// Tag: TC-02 [BVA/EX] - API Tier: StatisticsController.saveAccountStatistics() validation failure (HTTP 400)
+	@Test
+	public void shouldFailToSaveAccountWhenValidationFails() throws Exception {
+
+		final Account account = new Account();
+		account.setSaving(null);
+		account.setExpenses(null);
+		account.setIncomes(null);
+
+		String json = mapper.writeValueAsString(account);
+
+		mockMvc.perform(put("/test").contentType(MediaType.APPLICATION_JSON).content(json))
+				.andExpect(status().isBadRequest());
 	}
 }

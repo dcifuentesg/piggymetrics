@@ -49,6 +49,7 @@ public class ExchangeRatesServiceImplTest {
 		assertEquals(BigDecimal.ONE, result.get(Currency.USD));
 	}
 
+	// Tag: TC-05 [DT/State] - Logic Tier: ExchangeRatesServiceImpl.getCurrentRates() caching verification
 	@Test
 	public void shouldNotRequestRatesWhenTodaysContainerAlreadyExists() {
 
@@ -69,6 +70,7 @@ public class ExchangeRatesServiceImplTest {
 		verify(client, times(1)).getRates(Currency.getBase());
 	}
 
+	// Tag: TC-06 [EP/BVA] - Logic Tier: ExchangeRatesServiceImpl.convert() ratio calculation & rounding
 	@Test
 	public void shouldConvertCurrency() {
 
@@ -88,6 +90,7 @@ public class ExchangeRatesServiceImplTest {
 		assertTrue(expectedConvertionResult.compareTo(result) == 0);
 	}
 
+	// Tag: TC-07 [EX] - Logic Tier: ExchangeRatesServiceImpl.convert() null amount validation
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldFailToConvertWhenAmountIsNull() {
 		ratesService.convert(Currency.EUR, Currency.RUB, null);

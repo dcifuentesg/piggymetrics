@@ -58,6 +58,7 @@ public class StatisticsServiceImplTest {
 		assertEquals(list, result);
 	}
 
+	// Tag: TC-04 [EX] - Logic Tier: StatisticsServiceImpl.findByAccountName() null accountName
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldFailToFindDataPointWhenAccountNameIsNull() {
 		statisticsService.findByAccountName(null);
@@ -68,6 +69,7 @@ public class StatisticsServiceImplTest {
 		statisticsService.findByAccountName("");
 	}
 
+	// Tag: TC-03 [EP/BVA] - Logic Tier: StatisticsServiceImpl.save() calculation & normalization
 	@Test
 	public void shouldSaveDataPoint() {
 
