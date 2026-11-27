@@ -55,6 +55,7 @@ public class DataPointRepositoryTest {
 		assertEquals(point.getExpenses().size(), points.get(0).getExpenses().size());
 	}
 
+	// Tag: TC-08 [EP/State] - Data Tier: DataPointRepository idempotency and composite key persistence
 	@Test
 	public void shouldRewriteDataPointWithinADay() {
 
